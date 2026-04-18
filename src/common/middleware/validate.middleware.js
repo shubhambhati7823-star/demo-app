@@ -1,12 +1,16 @@
-const validate=(Dtoclass)=>{
-    return (req,resp,next)=>{
-        const {errors,value}=Dtoclass.validate(req.body)
-        if(errors){
-            throw Error
-        }
-        req.body=value
-        next()
-    }
-}
+const validate = (DtoClass) => {
+    return (req, res, next) => {
+        const { error, message, data } = DtoClass.validate(req.body);
 
-export default validate
+        if (error) {
+            return res.status(400).json({
+                message
+            });
+        }
+
+        req.body = data;
+        next();
+    };
+};
+
+export default validate;

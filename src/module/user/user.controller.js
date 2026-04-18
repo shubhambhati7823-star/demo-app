@@ -1,24 +1,31 @@
-import * as authservice from "./user.service.js"
+import authservice from "./user.service.js";
 
 const register = async (req, res) => {
-    const resp = await authservice.register(req.body);
-    return res.status(200).json({ message: "user register successfully" })
-}
+    const user = await authservice.register(req.body);
+
+    return res.status(201).json({
+        message: "User registered successfully",
+        user
+    });
+};
 
 const login = async (req, res) => {
-    const resp = await authservice.Login(req.body)
-    res.cookie("refreshToken", refreshToken, {
-        httpOnly: true,
-        secure: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000
+    const resp = await authservice.login(req.body);
+
+    return res.status(200).json({
+        message: "User login successfully",
+        user: resp.userObj,
+        accessToken: resp.accessToken,
+        refreshToken: resp.refreshToken
     });
-    return res.status(200).json({ message: "user login successfully" }, res, { user: resp.userObj, accessToken: resp.accessToken })
+};
 
-}
 const logout = async (req, res) => {
-    await authservice.logout(req.user._id)
-    res.clearCookie("refreshToken")
-    return res.status(200).json({ message: "user logout successfully" })
-}
+    await authservice.logout(req.user._id);
 
-export { register, login, logout }
+    return res.status(200).json({
+        message: "User logout successfully"
+    });
+};
+
+export default { register, login, logout };

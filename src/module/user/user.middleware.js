@@ -1,5 +1,5 @@
-import { validateAccessToken } from "../../common/utils/jwt.utils";
-import User from "./user.model.js"
+import { validateAccessToken } from "../../common/utils/jwt.utils.js";
+import User from "./user.model.js";
 
 const authentication = async (req, resp, next) => {
     let token;
