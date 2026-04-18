@@ -78,7 +78,7 @@ const deleteStatus = async (statusId) => {
     }
 }
 
-const fetchStatus = async (userId) => {
+const fetchAllStatus = async (userId) => {
     try {
         const allStatus = await Status.find({ user: userId })
 
@@ -88,8 +88,23 @@ const fetchStatus = async (userId) => {
     }
 }
 
+const fetchStatus = async (statusId) => {
+    try {
+        const status = await Status.findById(statusId)
+
+        if (!status) {
+            throw ApiError.notFound("Status not found")
+        }
+
+        return status
+    } catch (error) {
+        throw ApiError.serverError()
+    }
+}
+
 export {
     createStatus,
     deleteStatus,
+    fetchAllStatus,
     fetchStatus
 }

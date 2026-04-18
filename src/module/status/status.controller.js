@@ -14,7 +14,7 @@ const deleteStatus = async (req, res) => {
     ApiResponse.ok(res, "Status deleted successfully")
 }
 
-const fetchStatus = async (req, res) => {
+const fetchAllStatus = async (req, res) => {
     const result = await statusService.fetchStatus(req.user.id)
 
     if (result.length === 0) {
@@ -24,8 +24,15 @@ const fetchStatus = async (req, res) => {
     ApiResponse.ok(res, "All status", result)
 }
 
+const fetchStatus = async(req, res)=>{
+    const result = await statusService.fetchStatus(req.params.id)
+
+    ApiResponse.ok(res, "Status fetched", result)
+}
+
 export {
     createStatus,
     deleteStatus,
+    fetchAllStatus,
     fetchStatus
 }
