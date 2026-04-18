@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import 'dotenv/config'
 
-const geanerateAccessToken = (payload)=>{
+const generateAccessToken = (payload)=>{
     const accessToken=jwt.sign(payload,process.env.JWT_SECRET_ACCESS_TOKEN,{
         expiresIn:process.env.JWT_SECRET_ACCESS_EXPIRES_IN
     })
@@ -12,7 +12,7 @@ const validateAccessToken=(token)=>{
     return jwt.verify(token,process.env.JWT_SECRET_ACCESS_TOKEN)
 }
 
-const geanerateRefreshToken = (payload)=>{
+const generateRefreshToken = (payload)=>{
     const RefreshToken=jwt.sign(payload,process.env.JWT_SECRET_REFRESH_TOKEN,{
         expiresIn:process.env.JWT_SECRET_REFRESH_EXPIRES_IN
     })
@@ -25,8 +25,8 @@ const validateRefreshToken=(token)=>{
 
 
 export {
-    geanerateAccessToken,
-    geanerateRefreshToken,
+    generateAccessToken,
+    generateRefreshToken,
     validateAccessToken,
     validateRefreshToken
 }

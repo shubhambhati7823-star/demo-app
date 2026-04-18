@@ -3,16 +3,25 @@ import BaseClass from "../../../common/dto/baseDto.js";
 
 class Register extends BaseClass {
     static schema = Joi.object({
-        username: Joi.string().min(3).max(30).required(),
+        username: Joi.string()
+            .min(3)
+            .max(30)
+            .trim()
+            .required(),
 
         email: Joi.string()
-            .email({ tlds: { allow: false } })
+            .email()
+            .lowercase()
             .required(),
 
         password: Joi.string()
             .min(6)
             .pattern(/^(?=.*[A-Z])(?=.*\d).+$/)
-            .required(),
+            .required()
+            .messages({
+                "string.min": "Password must be at least 6 characters",
+                "string.pattern.base": "Password must contain at least 1 uppercase letter and 1 number"
+            }),
 
         fullName: Joi.string().max(50).optional(),
 
@@ -21,6 +30,3 @@ class Register extends BaseClass {
 }
 
 export default Register;
- 
- 
- 
