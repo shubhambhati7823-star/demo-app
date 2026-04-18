@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import express from "express";
 import statusRouter from "./module/status/status.route.js";
 import authRouter from "./module/user/user.routes.js";
@@ -21,7 +20,6 @@ app.use("/status", statusRouter);
 
 
 export default app;
-=======
 import authRoutes from "./module/user/user.routes.js"
 import express from "express"
 import chatRoutes from "./module/chat/chat.routes.js"
@@ -35,4 +33,3 @@ app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 
 export default app
->>>>>>> 882140d0ad9bb36850ebfcfdc68f68c0af61305c
