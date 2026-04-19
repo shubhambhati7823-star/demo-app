@@ -78,8 +78,6 @@ const fetchAllStatus = async (userId) => {
 
     return allStatus;
 
-    throw ApiError.serverError()
-
 }
 
 const fetchStatus = async (statusId) => {
