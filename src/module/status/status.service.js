@@ -77,7 +77,6 @@ const fetchAllStatus = async (userId) => {
     const allStatus = await Status.find({ user: userId })
 
     return allStatus;
-
 }
 
 const fetchStatus = async (statusId) => {
@@ -88,8 +87,7 @@ const fetchStatus = async (statusId) => {
         throw ApiError.notFound("Status not found")
     }
 
-    return status
-
+    return status;
 }
 
 export {
