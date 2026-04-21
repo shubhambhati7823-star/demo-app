@@ -3,7 +3,7 @@ import * as statusService from "./status.service.js"
 
 const createStatus = async (req, res) => {
     const result = await statusService.createStatus(req.body.statusText, req.file, req.user._id)
-
+    
     ApiResponse.ok(res, "status created", result)
 }
 

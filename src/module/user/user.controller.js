@@ -18,7 +18,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const resp = await authservice.login(req.body);
-
+     
         return res.status(200).json({
             message: "User login successfully",
             user: resp.userObj,
