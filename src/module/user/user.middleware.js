@@ -12,7 +12,7 @@ const authentication = async (req, resp, next) => {
     }
 
     const decoded = validateRefreshToken(token)
-    const user = User.findById(decoded.id)
+    const user =await User.findById(decoded.id)
     if (!user) return resp.status(401).json({ message: "user not found" })
     req.user = user
     next()

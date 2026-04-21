@@ -1,18 +1,11 @@
 import Chat from "./chat.model.js";
 
-const createMessage = async (data, userId) => {
-  return await Chat.create({
-    ...data,
-    sender: userId
-  });
+export const createMessage = async (data) => {
+  return await Chat.create(data);
 };
 
-const getMessages = async (roomId) => {
+export const getMessages = async (roomId) => {
   return await Chat.find({ roomId })
     .sort({ createdAt: 1 })
-    .populate("sender receiver", "name email");
-};
-export default {
-  createMessage,
-  getMessages
+    .populate("sender receiver", "_id email");
 };

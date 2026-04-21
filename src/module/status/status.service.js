@@ -5,7 +5,7 @@ import ApiResponse from "../../common/utils/api-response.js";
 import mongoose from "mongoose";
 
 const createStatus = async (text, file, userId) => {
-
+    console.log(userId)
     let contentType;
     let statusData = {
         user: userId
@@ -74,7 +74,7 @@ const deleteStatus = async (statusId) => {
 
 const fetchAllStatus = async (userId) => {
 
-    const allStatus = await Status.find({ user: userId })
+    const allStatus = await Status.find({ user: userId }).sort({ createdAt: -1 }).populate("user", "username fullName")
 
     return allStatus;
 
@@ -82,11 +82,12 @@ const fetchAllStatus = async (userId) => {
 
 const fetchStatus = async (statusId) => {
 
-    const status = await Status.findById(statusId)
+    const status = await Status.findById(statusId).populate("user", "username fullName")
 
     if (!status) {
         throw ApiError.notFound("Status not found")
     }
+ 
 
     return status
 

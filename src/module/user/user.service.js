@@ -74,7 +74,7 @@ const logout = async (userId) => {
 };
 
 const getAllUsers = async () => {
-    const users = await User.find().select("-password -refreshToken").lean();
+    const users = await User.find().select("-password -refreshToken").sort({ createdAt: -1 }).lean();
     return users;
 }
 
