@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import ApiError from "./api-error.js";
 
 export const uploadOnCloudinary = async (filePath) => {
+
     if (!filePath) return null;
 
     try {

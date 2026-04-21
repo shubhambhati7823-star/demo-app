@@ -6,10 +6,14 @@ import mongoose from "mongoose";
 
 const createStatus = async (text, file, userId) => {
 
+    console.log(file)
+
     let contentType;
     let statusData = {
         user: userId
     };
+
+    console.log(statusData)
 
     if (!file && text) {
         contentType = "text";
